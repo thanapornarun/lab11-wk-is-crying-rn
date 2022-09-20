@@ -22,6 +22,13 @@ public class Vocabulary {
         this.meaningWord = meaningWord;
     }
 
+    public Vocabulary() {
+        this.word = "";
+        this.partOfSpeech = "";
+        this.meaningWord = "";
+        this.wordSentences = new ArrayList<>();
+    }
+
     public String getWord() {
         return word;
     }
@@ -38,8 +45,13 @@ public class Vocabulary {
         return wordSentences;
     }
 
+    public void defineWord(String word) { this.word = word; }
     public void defineMeaning(String meaning){
         this.meaningWord = meaning;
+    }
+
+    public void definePartOfSpeech(String partOfSpeech){
+        this.partOfSpeech = partOfSpeech;
     }
 
     public void addSentence(String sentence){

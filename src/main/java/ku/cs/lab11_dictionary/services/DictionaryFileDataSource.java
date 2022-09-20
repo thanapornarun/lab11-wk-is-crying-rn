@@ -49,13 +49,16 @@ public class DictionaryFileDataSource implements DataSource<Dictionary> {
             String line = "";
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(","); // แยกด้วยคอมม่า
-                Vocabulary v = new Vocabulary(
-                        data[0].trim(),
-                        data[1].trim(),
-                        data[2].trim()
-                );
+                Vocabulary v = new Vocabulary();
+                v.defineWord(data[0].trim());
+                v.definePartOfSpeech(data[1].trim());
+                v.defineMeaning(data[2].trim());
                 v.addSentence(data[3].trim());
-                v.addSentence(data[4].trim());
+                int i = 4;
+                while (data[i] != null) {
+                    v.addSentence(data[i].trim());
+                    i++;
+                }
                 dic.addVocabulary(v);
             }
 
@@ -87,12 +90,12 @@ public class DictionaryFileDataSource implements DataSource<Dictionary> {
             buffer = new BufferedWriter(writer);
 
             for (String word : dic.getAllVocabulary()){
-                Vocabulary v = dic.find(word);// find word
-                String line = v.getWord().trim() + "," + v.getPartOfSpeech().trim() + "," + v.getMeaningWord().trim();
-                for (String example : v.getWordSentences()){
-                    line = line + "," + example.trim();
+                Vocabulary v = dic.find(word);
+                StringBuilder line = new StringBuilder(v.getWord().trim() + "," + v.getPartOfSpeech().trim() + "," + v.getMeaningWord().trim());
+                for (String sentence : v.getWordSentences()){
+                    line.append(",").append(sentence.trim());
                 }
-                buffer.append(line);
+                buffer.append(line.toString());
                 buffer.newLine();
             }
 
