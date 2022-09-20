@@ -23,16 +23,6 @@ public class Dictionary {
         return found;
     }
 
-    public void defineWordMeaning(String vocab, String meaning){
-        Vocabulary found = find(vocab);
-        found.defineMeaning(meaning);
-    }
-
-    public void addWordExample(String vocab, String wordSentences){
-        Vocabulary found = find(vocab);
-        found.addSentence(wordSentences);
-    }
-
     public Set<String> getAllVocabulary() {
         return dictionary.keySet();
     }

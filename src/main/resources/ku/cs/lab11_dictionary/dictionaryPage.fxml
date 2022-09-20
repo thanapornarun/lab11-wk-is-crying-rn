@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.lab11_dictionary.controller.DictionaryHashMapController">
    <children>
-      <ListView layoutX="27.0" layoutY="25.0" prefHeight="454.0" prefWidth="242.0" />
+      <ListView fx:id="dictionaryView" layoutX="27.0" layoutY="25.0" prefHeight="454.0" prefWidth="242.0" />
       <Text layoutX="288.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word :">
          <font>
             <Font name="Comic Sans MS Bold" size="16.0" />
@@ -44,6 +44,6 @@
       <Text layoutX="324.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part of Speech :" />
       <Text layoutX="324.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Meaning of Word :" />
       <Text layoutX="543.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Example Sentences :" />
-      <Button fx:id="addWordButton" layoutX="698.0" layoutY="530.0" mnemonicParsing="false" text="Add" onAction="#handleAddWordButton"/>
+      <Button fx:id="addWordButton" layoutX="698.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleAddWordButton" text="Add" />
    </children>
 </AnchorPane>

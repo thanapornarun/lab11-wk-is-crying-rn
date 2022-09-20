@@ -50,12 +50,17 @@ public class DictionaryFileDataSource implements DataSource<Dictionary> {
             while((line = buffer.readLine()) != null){
                 String[] data = line.split(","); // แยกด้วยคอมม่า
                 Vocabulary v = new Vocabulary();
-                v.defineWord(data[0].trim());
-                v.definePartOfSpeech(data[1].trim());
-                v.defineMeaning(data[2].trim());
-                v.addSentence(data[3].trim());
-                int i = 4;
-                while (data[i] != null) {
+                if (data.length == 1) {
+                    v.defineWord(data[0].trim());
+                }
+                if (data.length == 2) {
+                    v.definePartOfSpeech(data[1].trim());
+                }
+                if (data.length == 3) {
+                    v.defineMeaning(data[2].trim());
+                }
+                int i = 3;
+                while (i < data.length) {
                     v.addSentence(data[i].trim());
                     i++;
                 }

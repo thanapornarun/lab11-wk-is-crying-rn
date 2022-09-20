@@ -24,6 +24,7 @@ public class DictionaryHashMapController {
     @FXML private TextArea textAreaSentences;
     @FXML private Button addWordButton;
 
+
     private DataSource<Dictionary> dataSource;
     private Dictionary dictionary;
 

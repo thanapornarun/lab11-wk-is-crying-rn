@@ -9,19 +9,6 @@ public class Vocabulary {
     String meaningWord;
     ArrayList<String> wordSentences;
 
-    public Vocabulary(String word, String partOfSpeech, String meaningWord, ArrayList<String> wordSentences) {
-        this.word = word;
-        this.partOfSpeech = partOfSpeech;
-        this.meaningWord = meaningWord;
-        this.wordSentences = wordSentences;
-    }
-
-    public Vocabulary(String word, String partOfSpeech, String meaningWord) {
-        this.word = word;
-        this.partOfSpeech = partOfSpeech;
-        this.meaningWord = meaningWord;
-    }
-
     public Vocabulary() {
         this.word = "";
         this.partOfSpeech = "";
@@ -45,7 +32,10 @@ public class Vocabulary {
         return wordSentences;
     }
 
-    public void defineWord(String word) { this.word = word; }
+    public void defineWord(String word){
+        this.meaningWord = word;
+    }
+
     public void defineMeaning(String meaning){
         this.meaningWord = meaning;
     }
