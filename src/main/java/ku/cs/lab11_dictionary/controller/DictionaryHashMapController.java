@@ -2,10 +2,9 @@ package ku.cs.lab11_dictionary.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import ku.cs.lab11_dictionary.models.Dictionary;
 import ku.cs.lab11_dictionary.models.Vocabulary;
 import ku.cs.lab11_dictionary.services.DataSource;
@@ -18,6 +17,12 @@ public class DictionaryHashMapController {
     @FXML private Label partOfSpeechLabel;
     @FXML private Label meaningWordLabel;
     @FXML private TextArea sentencesTextArea;
+
+    @FXML private TextField textFieldWord;
+    @FXML private TextField textFieldPartOfSpeech;
+    @FXML private TextField textFieldMeaningWord;
+    @FXML private TextArea textAreaSentences;
+    @FXML private Button addWordButton;
 
     private DataSource<Dictionary> dataSource;
     private Dictionary dictionary;
@@ -64,5 +69,34 @@ public class DictionaryHashMapController {
         partOfSpeechLabel.setText("");
         meaningWordLabel.setText("");
         sentencesTextArea.setText("");
+    }
+
+    public void handleAddWordButton(ActionEvent actionEvent){
+        String vocab = textFieldWord.getText();
+        String partOfSpeech = textFieldPartOfSpeech.getText();
+        String meaning = textFieldMeaningWord.getText();
+        meaning = meaning.replace(",", ".");
+
+        Vocabulary v = new Vocabulary();
+        v.defineWord(vocab);
+        v.definePartOfSpeech(partOfSpeech);
+        v.defineMeaning(meaning);
+
+        String exampleSentences = textAreaSentences.getText();
+
+        String[] sentences = exampleSentences.split(",");
+        for (String str: sentences){
+            v.addSentence(str);
+        }
+
+        dictionary.addVocabulary(v);
+
+        dataSource.writeData(dictionary);
+        textFieldWord.clear();
+        textFieldPartOfSpeech.clear();
+        textFieldMeaningWord.clear();
+        textAreaSentences.clear();
+        dictionaryView.getItems().clear();
+        showListView();
     }
 }
